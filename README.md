@@ -8,3 +8,6 @@ Create the RESTful API to register/delete/update/get for freelancers
 * SQL Server 2012
 
   ## packages ( install from Nuget package Manager)
+   <p align="center">
+  <img src="" width="800" title="diagram"> 
+   </p>
