@@ -56,9 +56,17 @@ Generate the Token before call to the API end point
 <p align="center">
   <img src="https://github.com/shanukat/CDN_WebApi_Project/blob/master/images/token_generate.png" width="800" title="diagram"> 
    </p>
+  
 
 Pass the generated Access Token in request headers to call to the API endpoint
 <p align="center">
   <img src="https://github.com/shanukat/CDN_WebApi_Project/blob/master/images/postman_get_response.png" width="800" title="diagram"> 
    </p>
+
+## Deploy the Web App to Azure App Services
+<ul>
+  <li>Create new Azure App Service from Azure Portal</li>  
+  <li>Deploy api to Azure App Service to publish the Web App to Azure.</li>  
+</ul>
+
 
