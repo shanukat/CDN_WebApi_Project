@@ -21,7 +21,7 @@ jobs:
           dotnet-version: '6.0.x'
 
       - name: Restore
-        run: dotnet restore ./CDN.WebApi/CDN.WebApi.csproj
+        run: dotnet restore ./CDN.WebApi/CDN.WebApi.sln
 
  
       - name: Build test project
