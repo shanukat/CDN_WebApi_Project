@@ -1,0 +1,58 @@
+name: Build and deploy ASP.Net Core API to an Azure Web App
+  
+on:
+  push:
+    branches: 
+     - master
+    
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-web-api:
+    runs-on: ubuntu-latest  # runs on github hosted runner
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Restore
+        run: dotnet restore ./CDN.WebApi/CDN.WebApi.sln
+
+ 
+      - name: Build test project
+        run: dotnet build ./CDN.WebApi.Test/CDN.WebApi.Test.csproj -c Release -f net6.0 --no-restore
+
+      - name: Run unit Test (xUnit + coverage)
+        run: >
+            dotnet test ./CDN.WebApi.Test/CDN.WebApi.Test.csproj
+            -c Release -f net6.0
+            --collect:"XPlat Code Coverage"
+            --results-directory ./TestResults
+
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            TestResults/**/*.trx
+            TestResults/**/coverage*.xml
+      
+
+      - name: Publish
+        run: dotnet publish ./CDN.WebApi/CDN.WebApi.csproj -c Release -f net6.0 -o ./publish
+
+      - name: Upload publish artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cdnwebapiproject
+          path: ./publish
+
+   
