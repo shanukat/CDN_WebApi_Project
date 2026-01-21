@@ -2,7 +2,8 @@ name: Build and deploy ASP.Net Core API to an Azure Web App
   
 on:
   push:
-    branches: feature/github_workflow
+    branches: 
+     - master
     
   workflow_dispatch:
 
