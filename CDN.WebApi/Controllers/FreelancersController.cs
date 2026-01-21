@@ -51,14 +51,21 @@ namespace CDN.WebApi.Controllers
         {
             try
             {
-                var freelancer = await _freelancerService.GetFreelancerById(id);
-                if (freelancer != null)
+                if (id != 0)
                 {
-                    return Ok(freelancer);
+                    var freelancer = await _freelancerService.GetFreelancerById(id);
+                    if (freelancer != null)
+                    {
+                        return Ok(freelancer);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
                 else
                 {
-                    return NotFound();
+                    return BadRequest();
                 }
             }
             catch (Exception ex)
