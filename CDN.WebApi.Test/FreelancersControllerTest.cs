@@ -21,7 +21,7 @@ namespace CDN.WebApi.Test
 
             //Unit tests should NOT depend on:
 
-            //Real database
+            //Real DB
             //Real service implementation
             //Real network
 
